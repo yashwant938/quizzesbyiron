@@ -247,13 +247,26 @@ export default function HostView() {
   if (gameOver) {
     return (
       <div style={{ minHeight: "100vh", padding: 24, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-        <div style={{ width: "100%", maxWidth: 600 }}>
-          <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <div style={{ fontSize: "4rem", marginBottom: 16 }}>🏆</div>
+        <div style={{ width: "100%", maxWidth: 650 }}>
+          <div style={{ textAlign: "center", marginBottom: 32 }}>
+            <div style={{ fontSize: "4rem", marginBottom: 12 }}>🏆</div>
             <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "2.5rem", fontWeight: 800, marginBottom: 8 }}>
               Game Over!
             </h1>
             <p style={{ color: "rgba(255,255,255,0.5)" }}>Final Leaderboard</p>
+          </div>
+
+          {/* Compiler Team Surprise */}
+          <div className="glass-card animate-bounce-in" style={{ padding: 20, marginBottom: 24, textAlign: "center", background: "rgba(124, 58, 237, 0.15)" }}>
+            <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.6rem", fontWeight: 800, marginBottom: 16, color: "#fff" }}>
+              Shoutout to the Compiler Team! 🎉
+            </h2>
+            <img 
+              src="/team.jpg" 
+              alt="Compiler Team" 
+              style={{ width: "100%", maxHeight: 350, objectFit: "cover", borderRadius: 12, border: "3px solid rgba(167, 139, 250, 0.4)", display: "block" }} 
+              onError={(e) => { e.target.style.display = 'none'; }}
+            />
           </div>
           <div className="glass-card" style={{ padding: 24, marginBottom: 24 }}>
             {leaderboard.slice(0, 10).map((p) => (
