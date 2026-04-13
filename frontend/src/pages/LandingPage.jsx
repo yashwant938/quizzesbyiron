@@ -2,6 +2,15 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Zap, Users, PlayCircle, QrCode } from "lucide-react";
 
+const TECH_QUOTES = [
+  "\"Talk is cheap. Show me the code.\" – Linus Torvalds",
+  "\"First, solve the problem. Then, write the code.\" – John Johnson",
+  "\"Any fool can write code that a computer can understand.\" – Martin Fowler",
+  "\"Make it work, make it right, make it fast.\" – Kent Beck",
+  "\"Experience is the name everyone gives to their mistakes.\" – Oscar Wilde",
+  "\"Code is like humor. When you have to explain it, it's bad.\" – Cory House"
+];
+
 const BACKEND_URL =
   import.meta.env.VITE_BACKEND_URL ||
   `http://${window.location.hostname}:3001`;
@@ -11,6 +20,15 @@ export default function LandingPage() {
   const [loading, setLoading] = useState(false);
   const [joinCode, setJoinCode] = useState("");
   const [error, setError] = useState("");
+  const [quoteIdx, setQuoteIdx] = useState(0);
+
+  // Cycle through quotes every 5 seconds
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setQuoteIdx((prev) => (prev + 1) % TECH_QUOTES.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleHostGame = async () => {
     setLoading(true);
@@ -44,7 +62,7 @@ export default function LandingPage() {
       padding: "24px",
     }}>
       {/* Logo */}
-      <div style={{ textAlign: "center", marginBottom: "56px" }}>
+      <div style={{ textAlign: "center", marginBottom: "48px" }}>
         <div style={{
           display: "inline-flex",
           alignItems: "center",
@@ -72,9 +90,30 @@ export default function LandingPage() {
         }}>
           QuizBlitz
         </h1>
-        <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "1.1rem" }}>
+        <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "1.2rem", fontWeight: 600, marginBottom: 16 }}>
           Real-time multiplayer quiz battles ⚡
         </p>
+
+        {/* Dynamic Quote Section */}
+        <div style={{
+          height: "30px", // Fixed height to prevent layout shift
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+          <p
+            key={quoteIdx} // Key changes force re-animation
+            className="animate-slide-in"
+            style={{
+              color: "rgba(255,255,255,0.45)",
+              fontSize: "0.95rem",
+              fontStyle: "italic",
+              margin: 0,
+            }}
+          >
+            {TECH_QUOTES[quoteIdx]}
+          </p>
+        </div>
       </div>
 
       {/* Cards */}
