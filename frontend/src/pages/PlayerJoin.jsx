@@ -75,7 +75,7 @@ export default function PlayerJoin() {
           <h1 style={{
             fontFamily: "'Space Grotesk', sans-serif",
             fontSize: "1.8rem", fontWeight: 800, marginBottom: 4,
-          }}>Join QuizBlitz</h1>
+          }}>Join YashQuizX</h1>
           <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem" }}>
             Enter the room code and your name
           </p>

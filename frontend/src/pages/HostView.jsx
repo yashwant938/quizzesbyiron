@@ -287,7 +287,7 @@ export default function HostView() {
       {/* Top bar */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24, maxWidth: 1000, width: "100%", margin: "0 auto 24px" }}>
         <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "1.1rem" }}>
-          ⚡ QuizBlitz
+          ⚡ YashQuizX
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <span className="score-badge"><Users size={14} />{players.length} players</span>

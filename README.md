@@ -1,4 +1,4 @@
-# QuizBlitz 🎮⚡
+# YashQuizX 🎮⚡
 
 A real-time multiplayer Kahoot-style quiz app built with React + Vite + Socket.IO.
 

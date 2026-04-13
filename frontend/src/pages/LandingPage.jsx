@@ -88,7 +88,7 @@ export default function LandingPage() {
           lineHeight: 1.1,
           marginBottom: 12,
         }}>
-          QuizBlitz
+          YashQuizX
         </h1>
         <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "1.2rem", fontWeight: 600, marginBottom: 16 }}>
           Real-time multiplayer quiz battles ⚡
