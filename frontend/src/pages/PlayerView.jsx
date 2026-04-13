@@ -43,10 +43,7 @@ export default function PlayerView() {
   const [joinError, setJoinError] = useState("");
   const [joining, setJoining] = useState(false);
   const timerRef = useRef(null);
-  const phaseRef = useRef(phase);
-
-  // Keep phase ref in sync (used inside socket callbacks to avoid stale closure)
-  useEffect(() => { phaseRef.current = phase; }, [phase]);
+  const feedbackRef = useRef(null);
 
   // Save name to sessionStorage so it survives navigation
   useEffect(() => {
@@ -77,11 +74,13 @@ export default function PlayerView() {
       setPhase("question");
       setSelectedAnswer(null);
       setFeedback(null);
+      feedbackRef.current = null;
       setTimeLeft(data.timeLimit || 20);
     });
 
     socket.on("answer_feedback", (data) => {
       setFeedback(data);
+      feedbackRef.current = data;
       setScore(data.totalScore);
       setPhase("feedback");
       setFloatingPoints(data.points);
@@ -90,7 +89,8 @@ export default function PlayerView() {
     });
 
     socket.on("question_end", () => {
-      if (phaseRef.current !== "feedback") {
+      // If we haven't received feedback yet, it means time ran out without an answer
+      if (!feedbackRef.current) {
         setPhase("feedback");
         setFeedback(null);
       }
